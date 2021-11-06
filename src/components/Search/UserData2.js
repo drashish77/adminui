@@ -33,8 +33,11 @@ export default function UserData() {
 
   useEffect(() => {
     setFilteredCountries(
-      users.filter((user) =>
-        user.name.toLowerCase().includes(search.toLowerCase())
+      users.filter(
+        (user) =>
+          user.name.toLowerCase().includes(search.toLowerCase()) ||
+          user.email.toLowerCase().includes(search.toLowerCase()) ||
+          user.role.toLowerCase().includes(search.toLowerCase())
       )
     )
   }, [search, users])
