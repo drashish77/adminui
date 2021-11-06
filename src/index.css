@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,8 +12,95 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* .user__table {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 10px auto;
+  align-items: center;
+} */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2% auto;
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+td,
+th {
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+  padding: 13px;
+}
+
+.input {
+  margin-left: 20px;
+  cursor: pointer;
+}
+i {
+  cursor: pointer;
+}
+.firstIcon {
+  margin-right: 20px;
+  text-align: center;
+}
+.secondIcon {
+  text-align: center;
+  color: red;
+}
+.role {
+  text-transform: capitalize;
+}
+/* .search {
+  width: 100%;
+  padding: 10px 20px;
+} */
+
+/* .search input:focus {
+  border: 1px solid blueviolet;
+} */
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+.pageNumbers li {
+  padding: 10px 20px;
+  margin: 2px;
+  /* border: 1px solid #000; */
+  background: #d9efff;
+  color: #303f60;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.pageNumbers li:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+.pageNumbers li.active {
+  background: white;
+  color: #303f60;
+}
+
+.searchInputs {
+  display: flex;
+  align-items: center;
+}
+.search__input {
+  position: relative;
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 20px;
+  padding: 15px 20px;
+}
+.searchIcon i {
+  position: absolute;
+  top: 4%;
+  right: 13%;
+}
+#clearBtn {
+  cursor: pointer;
 }
