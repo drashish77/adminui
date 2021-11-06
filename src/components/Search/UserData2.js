@@ -23,8 +23,12 @@ export default function UserData() {
     axios
       .get(URL)
       .then((res) => {
-        setUsers(res.data)
+        // setUsers(res.data)
         setLoading(false)
+        const data = JSON.stringify(res.data)
+        localStorage.setItem('users', data)
+        const finalData = localStorage.getItem('users')
+        setUsers(JSON.parse(finalData))
       })
       .catch((err) => {
         console.log(err)
@@ -96,14 +100,13 @@ export default function UserData() {
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
-
+  console.log(users.length)
   const deleteClickHandler = (id) => {
-    axios
-      .delete(
-        `https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/${id}`
-      )
-      .then(() => setDeleted(true))
-    alert('item deleted')
+    const data = users.filter((user) => {
+      return user.id !== id
+    })
+    setUsers(data)
+    console.log(users.length)
   }
   const editClickHandler = (id) => console.log('edit clicked:', id)
 
