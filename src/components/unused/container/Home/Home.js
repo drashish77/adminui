@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-import PaginationCard from '../../components/PaginationCard'
-import { getApiResponse } from '../../utils/apiHandler'
+import PaginationCard from '../../../PaginationCard'
+import { getApiResponse } from '../../../../utils/apiHandler'
 
 const Home = () => {
   const [users, setUsers] = useState([])

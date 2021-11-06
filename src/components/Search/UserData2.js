@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
 import SearchFilter from './SearchFilter'
-import PaginationCard from '../PaginationCard'
+import PaginationCard from './PaginationCard'
+import { URL } from '../../constants'
 
 export default function UserData() {
   const [deleted, setDeleted] = useState(false)
@@ -16,12 +17,11 @@ export default function UserData() {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
   const pages = []
-  const url =
-    'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json'
+
   useEffect(() => {
     setLoading(true)
     axios
-      .get(url)
+      .get(URL)
       .then((res) => {
         setUsers(res.data)
         setLoading(false)
@@ -95,7 +95,11 @@ export default function UserData() {
   }
 
   const deleteClickHandler = (id) => {
-    axios.delete(`${url}${id}`).then(() => setDeleted(true))
+    axios
+      .delete(
+        `https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/${id}`
+      )
+      .then(() => setDeleted(true))
     alert('item deleted')
   }
   const editClickHandler = (id) => console.log('edit clicked:', id)
