@@ -25,7 +25,8 @@ export default function UserData() {
   })
   console.log(userEdit)
   //user property update
-  const handleChange = (e) => setUserEdit({ [e.target.name]: e.target.value })
+  const handleChange = (e) =>
+    setUserEdit({ ...userEdit, [e.target.name]: e.target.value })
 
   useEffect(() => {
     setLoading(true)
