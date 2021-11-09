@@ -119,7 +119,27 @@ i {
 .edit_form {
   position: absolute;
   top: 12%;
-  left: 50%;
+  left: 60%;
   width: 100%;
   transform: translate(-50%, -50%);
+}
+.edit_form input {
+  padding: 0px 10px;
+  min-height: 25px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: white;
+}
+.edit_form input::placeholder {
+  border-color: gray;
+}
+.edit_form input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+button {
+  padding: 0px 10px;
+  min-height: 25px;
+  border-radius: 5px;
+  border-color: goldenrod;
 }

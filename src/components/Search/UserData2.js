@@ -129,8 +129,11 @@ export default function UserData() {
     const index = users.findIndex((user) => user.id === id)
 
     e.preventDefault()
-    const newUser = { id, ...userEdit }
-    const data = [...oldUsers, newUser]
+    // const newUser = { id, ...userEdit }
+    const data = users.map((user) =>
+      user.id === id ? { ...user, ...userEdit, edit: false } : user
+    )
+    // const data = [...oldUsers, newUser]
     data.sort((a, b) => a - b)
     setUsers(data)
   }
