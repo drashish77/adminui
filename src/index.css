@@ -117,9 +117,13 @@ i {
   cursor: pointer;
 }
 .edit_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   position: absolute;
   top: 12%;
-  left: 60%;
+  left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
 }

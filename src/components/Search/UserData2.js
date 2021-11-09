@@ -23,7 +23,7 @@ export default function UserData() {
     email: '',
     role: '',
   })
-  console.log(userEdit)
+
   //user property update
   const handleChange = (e) =>
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value })
@@ -33,7 +33,6 @@ export default function UserData() {
     axios
       .get(URL)
       .then((res) => {
-        // setUsers(res.data)
         setLoading(false)
         const data = JSON.stringify(res.data)
         localStorage.setItem('users', data)
@@ -115,26 +114,22 @@ export default function UserData() {
 
   //edit handler
   const editClickHandler = (id) => {
-    let tempUsers = users
-    const index = tempUsers.findIndex((user) => user.id === id)
-    tempUsers[index].edit = true
-    setUsers(tempUsers)
+    setUsers(
+      users.map((user) =>
+        user.id === id
+          ? { ...users.find((user) => user.id === id), edit: true }
+          : user
+      )
+    )
+    setUserEdit(users.find((user) => user.id === id))
     setUpdate((prevState) => !prevState)
-    // const EditableUser = users.filter((user) => user.id === id)
-    // console.log(EditableUser[0])
   }
 
   const onSubmit = (e, id) => {
-    const oldUsers = users.filter((user) => user.id !== id)
-    const index = users.findIndex((user) => user.id === id)
-
     e.preventDefault()
-    // const newUser = { id, ...userEdit }
     const data = users.map((user) =>
       user.id === id ? { ...user, ...userEdit, edit: false } : user
     )
-    // const data = [...oldUsers, newUser]
-    data.sort((a, b) => a - b)
     setUsers(data)
   }
   if (loading) {

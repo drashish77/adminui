@@ -112,3 +112,12 @@ const UserData = () => {
 }
 
 export default UserData
+setUsers(
+  users.map((user) =>
+    user.id === id
+      ? { ...users.find((user) => user.id === id), edit: true }
+      : user
+  )
+)
+setUserEdit(users.find((user) => user.id === id))
+setUpdate((prevState) => !prevState)
