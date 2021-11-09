@@ -12,14 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* .user__table {
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  margin: 10px auto;
-  align-items: center;
-} */
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -52,14 +45,7 @@ i {
 .role {
   text-transform: capitalize;
 }
-/* .search {
-  width: 100%;
-  padding: 10px 20px;
-} */
 
-/* .search input:focus {
-  border: 1px solid blueviolet;
-} */
 .pageNumbers {
   list-style: none;
   display: flex;
@@ -117,6 +103,7 @@ i {
   cursor: pointer;
 }
 .edit_form {
+  background-color: rgba(169, 169, 169, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,13 +111,16 @@ i {
   position: absolute;
   top: 12%;
   left: 50%;
-  width: 100%;
+  width: 60%;
+  height: 20%;
+  border-radius: 20px;
   transform: translate(-50%, -50%);
 }
 .edit_form input {
   padding: 0px 10px;
   min-height: 25px;
   border-radius: 5px;
+  margin: 5px;
   border: 1px solid gray;
   background-color: white;
 }
@@ -146,4 +136,38 @@ button {
   min-height: 25px;
   border-radius: 5px;
   border-color: goldenrod;
+}
+@media screen and (max-width: 425px) {
+  .edit_form {
+    width: 70%;
+    height: 30%;
+    margin-top: 50px;
+  }
+  td,
+  th {
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+    padding: 5px;
+  }
+  .pageNumbers {
+    padding-bottom: 5px;
+  }
+
+  .pageNumbers li {
+    padding: 5px 10px;
+    margin: 2px;
+  }
+  .pageNumbers li button {
+    background: #d9efff;
+    padding: 0 10px;
+    border: 0;
+    border-color: inherit;
+  }
+  .edit_form_name_email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
 }
