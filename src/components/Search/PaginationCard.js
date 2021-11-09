@@ -7,7 +7,6 @@ const PaginationCard = ({
   pageIncrementBtn,
   renderPageNumbers,
 }) => {
-  console.log({ currentPage, pages })
   return (
     <ul className='pageNumbers'>
       <li className='prev_next'>

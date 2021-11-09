@@ -183,3 +183,13 @@ export default function UserData() {
     </div>
   )
 }
+// const saveUser = (id, nameRef, emailRef, roleRef) => {
+//   let tempUsers = users
+//   const index = tempUsers.findIndex((user) => user.id === id)
+//   tempUsers[index].name = nameRef.current.value
+//   tempUsers[index].email = emailRef.current.value
+//   tempUsers[index].role = roleRef.current.value
+//   tempUsers[index].edit = false
+//   setUsers(tempUsers)
+//   setUpdate((prevState) => !prevState)
+// }

@@ -16,8 +16,8 @@ const EditForm = ({ id, name, email, role, onSubmit, handleChange }) => {
         onChange={handleChange}
       />
       <input
-        name='name'
-        type='role'
+        type='text'
+        name='role'
         placeholder='enter role'
         value={role}
         onChange={handleChange}

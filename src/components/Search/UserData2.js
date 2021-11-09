@@ -19,13 +19,13 @@ export default function UserData() {
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
   const [userEdit, setUserEdit] = useState({
-    id: null,
     name: '',
     email: '',
     role: '',
   })
+  console.log(userEdit)
+  //user property update
   const handleChange = (e) => setUserEdit({ [e.target.name]: e.target.value })
-  const pages = []
 
   useEffect(() => {
     setLoading(true)
@@ -43,18 +43,21 @@ export default function UserData() {
         console.log(err)
       })
   }, [])
-
+  //search filter
   useEffect(() => {
     setFilteredUsers(
-      users.filter(
-        (user) =>
-          user.name.toLowerCase().includes(search.toLowerCase()) ||
-          user.email.toLowerCase().includes(search.toLowerCase()) ||
-          user.role.toLowerCase().includes(search.toLowerCase())
-      )
+      users &&
+        users.filter(
+          (user) =>
+            user.name.toLowerCase().includes(search.toLowerCase()) ||
+            user.email.toLowerCase().includes(search.toLowerCase()) ||
+            user.role.toLowerCase().includes(search.toLowerCase())
+        )
     )
   }, [search, users])
 
+  //pagination part
+  const pages = []
   for (let i = 1; i <= Math.ceil(filteredUsers.length / itemsPerPage); i++) {
     pages.push(i)
   }
@@ -103,10 +106,13 @@ export default function UserData() {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
 
+  //delete handler
   const deleteClickHandler = (id) => {
     const data = users.filter((user) => user.id !== id)
     setUsers(data)
   }
+
+  //edit handler
   const editClickHandler = (id) => {
     let tempUsers = users
     const index = tempUsers.findIndex((user) => user.id === id)
@@ -116,16 +122,7 @@ export default function UserData() {
     // const EditableUser = users.filter((user) => user.id === id)
     // console.log(EditableUser[0])
   }
-  const saveUser = (id, nameRef, emailRef, roleRef) => {
-    let tempUsers = users
-    const index = tempUsers.findIndex((user) => user.id === id)
-    tempUsers[index].name = nameRef.current.value
-    tempUsers[index].email = emailRef.current.value
-    tempUsers[index].role = roleRef.current.value
-    tempUsers[index].edit = false
-    setUsers(tempUsers)
-    setUpdate((prevState) => !prevState)
-  }
+
   const onSubmit = (e, id) => {
     const oldUsers = users.filter((user) => user.id !== id)
     const index = users.findIndex((user) => user.id === id)
@@ -133,7 +130,7 @@ export default function UserData() {
     e.preventDefault()
     const newUser = { id, ...userEdit }
     const data = [...oldUsers, newUser]
-    console.log(data)
+    data.sort((a, b) => a - b)
     setUsers(data)
   }
   if (loading) {
@@ -187,15 +184,14 @@ export default function UserData() {
         </tbody>
       </table>
       {filteredUsers.map(
-        //id, name, email, role, onSubmit
         (user) =>
           user.edit && (
             <EditForm
               key={user.id}
               id={user.id}
-              email={user.email}
-              name={user.name}
-              role={user.role}
+              name={userEdit.name}
+              email={userEdit.email}
+              role={userEdit.role}
               onSubmit={onSubmit}
               handleChange={handleChange}
             />
