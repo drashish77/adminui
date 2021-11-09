@@ -7,29 +7,30 @@ const PaginationCard = ({
   pageIncrementBtn,
   renderPageNumbers,
 }) => {
+  console.log({ currentPage, pages })
   return (
-    <ul className='pageNumbers py-5'>
-      <li>
-        <div
+    <ul className='pageNumbers'>
+      <li className='prev_next'>
+        <button
           className=''
           disabled={currentPage === pages[0] ? true : false}
           onClick={handlePrevButton}
         >
-          <i className='fas fa-backward mr-2'></i> Prev
-        </div>
+          <i className='fas fa-backward'></i>
+        </button>
       </li>
       {pageDecrementBtn}
       {renderPageNumbers}
 
       {pageIncrementBtn}
-      <li>
-        <div
+      <li className='prev_next'>
+        <button
           className=''
           disabled={currentPage === pages[pages.length - 1] ? true : false}
           onClick={handleNextButton}
         >
-          Next <i className='fas fa-forward ml-2'></i>
-        </div>
+          <i className='fas fa-forward'></i>
+        </button>
       </li>
     </ul>
   )

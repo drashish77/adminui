@@ -67,6 +67,7 @@ i {
   align-items: center;
   padding-bottom: 50px;
 }
+
 .pageNumbers li {
   padding: 10px 20px;
   margin: 2px;
@@ -75,6 +76,17 @@ i {
   color: #303f60;
   cursor: pointer;
   border-radius: 5px;
+}
+.pageNumbers li button {
+  background: #d9efff;
+  padding: 0 20px;
+  border: 0;
+  border-color: inherit;
+}
+.pageNumbers li button:disabled {
+  color: red;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 .pageNumbers li:hover {
   background: rgba(0, 0, 0, 0.8);
@@ -103,4 +115,11 @@ i {
 }
 #clearBtn {
   cursor: pointer;
+}
+.edit_form {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
 }

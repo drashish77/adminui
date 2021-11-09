@@ -1,0 +1,36 @@
+.loader {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 50;
+  overflow: hidden;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+}
+
+.loader .loader__inner {
+  transition: all ease-in;
+  border-bottom: 5px solid gray;
+  height: 48px;
+  width: 48px;
+  width: 48px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.loader h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.loader p {
+  width: 33%;
+  text-align: center;
+  color: #ffffff;
+}

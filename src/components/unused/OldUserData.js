@@ -6,6 +6,7 @@ import PaginationCard from './PaginationCard'
 import { URL } from '../../constants'
 import Loader from '../../common/Loader'
 import EditForm from './EditForm'
+import paginationFn from './paginationFn'
 
 export default function UserData() {
   const [update, setUpdate] = useState(false)
@@ -55,53 +56,53 @@ export default function UserData() {
     )
   }, [search, users])
 
-  for (let i = 1; i <= Math.ceil(filteredUsers.length / itemsPerPage); i++) {
-    pages.push(i)
-  }
-  const handleClick = (event) => {
-    setCurrentPage(+event.target.id)
-  }
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
-  const renderPageNumbers = pages.map((number) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <li
-          key={number}
-          id={number}
-          onClick={handleClick}
-          className={currentPage === number ? 'active' : ''}
-        >
-          {number}
-        </li>
-      )
-    } else {
-      return null
-    }
-  })
-  const handlePrevButton = () => {
-    setCurrentPage(currentPage - 1)
-    if ((currentPage - 1) % pageNumberLimit === 0) {
-      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
-      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
-    }
-  }
-  const handleNextButton = () => {
-    setCurrentPage(currentPage + 1)
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-    }
-  }
-  let pageIncrementBtn = null
-  if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={handleNextButton}> &hellip; </li>
-  }
-  let pageDecrementBtn = null
-  if (minPageNumberLimit >= 1) {
-    pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
-  }
+  // for (let i = 1; i <= Math.ceil(filteredUsers.length / itemsPerPage); i++) {
+  //   pages.push(i)
+  // }
+  // const handleClick = (event) => {
+  //   setCurrentPage(+event.target.id)
+  // }
+  // const indexOfLastItem = currentPage * itemsPerPage
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  // const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
+  // const renderPageNumbers = pages.map((number) => {
+  //   if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+  //     return (
+  //       <li
+  //         key={number}
+  //         id={number}
+  //         onClick={handleClick}
+  //         className={currentPage === number ? 'active' : ''}
+  //       >
+  //         {number}
+  //       </li>
+  //     )
+  //   } else {
+  //     return null
+  //   }
+  // })
+  // const handlePrevButton = () => {
+  //   setCurrentPage(currentPage - 1)
+  //   if ((currentPage - 1) % pageNumberLimit === 0) {
+  //     setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
+  //     setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
+  //   }
+  // }
+  // const handleNextButton = () => {
+  //   setCurrentPage(currentPage + 1)
+  //   if (currentPage + 1 > maxPageNumberLimit) {
+  //     setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+  //     setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+  //   }
+  // }
+  // let pageIncrementBtn = null
+  // if (pages.length > maxPageNumberLimit) {
+  //   pageIncrementBtn = <li onClick={handleNextButton}> &hellip; </li>
+  // }
+  // let pageDecrementBtn = null
+  // if (minPageNumberLimit >= 1) {
+  //   pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
+  // }
 
   const deleteClickHandler = (id) => {
     const data = users.filter((user) => user.id !== id)
@@ -136,10 +137,28 @@ export default function UserData() {
     console.log(data)
     setUsers(data)
   }
+
+  const {
+    currentItems,
+    renderPageNumbers,
+    handlePrevButton,
+    handleNextButton,
+    pageIncrementBtn,
+    pageDecrementBtn,
+  } = paginationFn({
+    filteredUsers,
+    currentPage,
+    setCurrentPage,
+    itemsPerPage,
+    pageNumberLimit,
+    maxPageNumberLimit,
+    setMaxPageNumberLimit,
+    minPageNumberLimit,
+    setMinPageNumberLimit,
+  })
   if (loading) {
     return <Loader />
   }
-
   return (
     <div className='App'>
       <div className='searchInputs'>
