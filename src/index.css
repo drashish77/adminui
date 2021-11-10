@@ -171,3 +171,7 @@ button {
     flex-wrap: nowrap;
   }
 }
+#all_delete {
+  background-color: red;
+  color: white;
+}

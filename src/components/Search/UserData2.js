@@ -8,6 +8,7 @@ import Loader from '../../common/Loader'
 import EditForm from './EditForm'
 
 export default function UserData() {
+  const [idArr, setIdArr] = useState([])
   const [update, setUpdate] = useState(false)
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
@@ -23,7 +24,7 @@ export default function UserData() {
     email: '',
     role: '',
   })
-
+  // console.log(idArr)
   //user property update
   const handleChange = (e) =>
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value })
@@ -111,6 +112,11 @@ export default function UserData() {
     const data = users.filter((user) => user.id !== id)
     setUsers(data)
   }
+  const deleteAllHandler = () => {
+    const filteredData2 = users.filter((user) => !idArr.includes(user.id))
+    // console.log(idArr)
+    setUsers(filteredData2)
+  }
 
   //edit handler
   const editClickHandler = (id) => {
@@ -177,11 +183,18 @@ export default function UserData() {
                 {...user}
                 editClickHandler={() => editClickHandler(user.id)}
                 deleteClickHandler={() => deleteClickHandler(user.id)}
+                idArr={idArr}
+                setIdArr={setIdArr}
               />
             </Fragment>
           ))}
         </tbody>
       </table>
+      {idArr.length > 0 && (
+        <button id='all_delete' onClick={deleteAllHandler}>
+          Delete All
+        </button>
+      )}
       {filteredUsers.map(
         (user) =>
           user.edit && (
