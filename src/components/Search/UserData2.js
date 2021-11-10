@@ -9,6 +9,7 @@ import EditForm from './EditForm'
 
 export default function UserData() {
   const [idArr, setIdArr] = useState([])
+  const [allSelectedArr, setAllSelectedArr] = useState([])
   const [update, setUpdate] = useState(false)
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
@@ -112,12 +113,28 @@ export default function UserData() {
     const data = users.filter((user) => user.id !== id)
     setUsers(data)
   }
+
+  const userIdArr = []
+  const toggleCheck = () => {
+    currentItems.map((user) => userIdArr.push(user.id))
+    setAllSelectedArr(userIdArr)
+    // setAllSelectedArr((prevState) => {
+    //   const newState = { ...prevState }
+    //   newState[allSelectedArr] = !prevState[allSelectedArr]
+    //   return newState
+    // })
+  }
+  console.log(userIdArr)
+  const deleteSelectedHandler = () => {
+    const filteredData1 = users.filter((user) => !idArr.includes(user.id))
+    setUsers(filteredData1)
+  }
   const deleteAllHandler = () => {
-    const filteredData2 = users.filter((user) => !idArr.includes(user.id))
-    // console.log(idArr)
+    const filteredData2 = users.filter(
+      (user) => !allSelectedArr.includes(user.id)
+    )
     setUsers(filteredData2)
   }
-
   //edit handler
   const editClickHandler = (id) => {
     setUsers(
@@ -138,6 +155,7 @@ export default function UserData() {
     )
     setUsers(data)
   }
+
   if (loading) {
     return <Loader />
   }
@@ -169,7 +187,15 @@ export default function UserData() {
       <table>
         <thead>
           <tr>
-            <th>Checkbox</th>
+            <th>
+              <div className='toggle_check'>
+                <input
+                  className='toggle_check'
+                  type='checkbox'
+                  onClick={toggleCheck}
+                />
+              </div>
+            </th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -190,9 +216,15 @@ export default function UserData() {
           ))}
         </tbody>
       </table>
-      {idArr.length > 0 && (
+
+      {allSelectedArr.length > 0 && (
         <button id='all_delete' onClick={deleteAllHandler}>
           Delete All
+        </button>
+      )}
+      {idArr.length > 0 && (
+        <button id='all_delete' onClick={deleteSelectedHandler}>
+          Delete Selected
         </button>
       )}
       {filteredUsers.map(

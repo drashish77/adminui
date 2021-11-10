@@ -26,7 +26,7 @@ th {
   border-bottom: 1px solid #dddddd;
   padding: 13px;
 }
-
+.toggleCheck input,
 .input {
   margin-left: 20px;
   cursor: pointer;
@@ -137,6 +137,17 @@ button {
   border-radius: 5px;
   border-color: goldenrod;
 }
+#all_delete {
+  background-color: red;
+  color: white;
+}
+.select_all input {
+  margin: 10px 20px;
+}
+.toggle_check {
+  text-align: center;
+}
+
 @media screen and (max-width: 425px) {
   .edit_form {
     width: 70%;
@@ -170,8 +181,4 @@ button {
     align-items: center;
     flex-wrap: nowrap;
   }
-}
-#all_delete {
-  background-color: red;
-  color: white;
 }
