@@ -124,7 +124,7 @@ export default function UserData() {
     //   return newState
     // })
   }
-  console.log(userIdArr)
+  // console.log(userIdArr)
   const deleteSelectedHandler = () => {
     const filteredData1 = users.filter((user) => !idArr.includes(user.id))
     setUsers(filteredData1)
