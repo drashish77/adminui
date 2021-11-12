@@ -1,16 +1,17 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
-import SearchFilter from './SearchFilter'
-import PaginationCard from './PaginationCard'
-import { URL } from '../../constants'
-import Loader from '../../common/Loader'
-import EditForm from './EditForm'
+import SearchFilter from './Search/SearchFilter'
+import PaginationCard from './Pagination/PaginationCard'
+import { URL } from '../constants'
+import Loader from '../common/Loader'
+import EditForm from './Form/EditForm'
+import paginationFn from './Pagination/paginationFn'
+import Table from './Table/Table'
 
 export default function UserData() {
   const [idArr, setIdArr] = useState([])
   const [allSelectedArr, setAllSelectedArr] = useState([])
-  const [update, setUpdate] = useState(false)
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
@@ -58,55 +59,25 @@ export default function UserData() {
     )
   }, [search, users])
 
-  //pagination part
-  const pages = []
-  for (let i = 1; i <= Math.ceil(filteredUsers.length / itemsPerPage); i++) {
-    pages.push(i)
-  }
-  const handleClick = (event) => {
-    setCurrentPage(+event.target.id)
-  }
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
-  const renderPageNumbers = pages.map((number) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <li
-          key={number}
-          id={number}
-          onClick={handleClick}
-          className={currentPage === number ? 'active' : ''}
-        >
-          {number}
-        </li>
-      )
-    } else {
-      return null
-    }
+  const {
+    currentItems,
+    renderPageNumbers,
+    handlePrevButton,
+    handleNextButton,
+    pageIncrementBtn,
+    pageDecrementBtn,
+    pages,
+  } = paginationFn({
+    filteredUsers,
+    currentPage,
+    setCurrentPage,
+    itemsPerPage,
+    pageNumberLimit,
+    maxPageNumberLimit,
+    setMaxPageNumberLimit,
+    minPageNumberLimit,
+    setMinPageNumberLimit,
   })
-  const handlePrevButton = () => {
-    setCurrentPage(currentPage - 1)
-    if ((currentPage - 1) % pageNumberLimit === 0) {
-      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
-      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
-    }
-  }
-  const handleNextButton = () => {
-    setCurrentPage(currentPage + 1)
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-    }
-  }
-  let pageIncrementBtn = null
-  if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={handleNextButton}> &hellip; </li>
-  }
-  let pageDecrementBtn = null
-  if (minPageNumberLimit >= 1) {
-    pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
-  }
 
   //delete handler
   const deleteClickHandler = (id) => {
@@ -124,7 +95,7 @@ export default function UserData() {
     //   return newState
     // })
   }
-  // console.log(userIdArr)
+
   const deleteSelectedHandler = () => {
     const filteredData1 = users.filter((user) => !idArr.includes(user.id))
     setUsers(filteredData1)
@@ -145,7 +116,7 @@ export default function UserData() {
       )
     )
     setUserEdit(users.find((user) => user.id === id))
-    setUpdate((prevState) => !prevState)
+    // setUpdate((prevState) => !prevState)
   }
 
   const onSubmit = (e, id) => {
@@ -184,38 +155,13 @@ export default function UserData() {
         </div>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <div className='toggle_check'>
-                <input
-                  className='toggle_check'
-                  type='checkbox'
-                  onClick={toggleCheck}
-                />
-              </div>
-            </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((user) => (
-            <Fragment key={user.id}>
-              <SearchFilter
-                {...user}
-                editClickHandler={() => editClickHandler(user.id)}
-                deleteClickHandler={() => deleteClickHandler(user.id)}
-                idArr={idArr}
-                setIdArr={setIdArr}
-              />
-            </Fragment>
-          ))}
-        </tbody>
-      </table>
+      <Table
+        currentItems={currentItems}
+        editClickHandler={editClickHandler}
+        deleteClickHandler={deleteClickHandler}
+        idArr={idArr}
+        setIdArr={setIdArr}
+      />
 
       {allSelectedArr.length > 0 && (
         <button id='all_delete' onClick={deleteAllHandler}>

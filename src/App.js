@@ -1,12 +1,5 @@
-import './App.css'
-import UserData from './components/Search/UserData2'
+import UserData from './components/UserData'
 
-function App() {
-  return (
-    <div className='App'>
-      <UserData />
-    </div>
-  )
-}
+const App = () => <UserData />
 
 export default App

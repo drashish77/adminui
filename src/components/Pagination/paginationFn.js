@@ -39,7 +39,7 @@ const paginationFn = ({
   })
   const handlePrevButton = () => {
     setCurrentPage(currentPage - 1)
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
     }
@@ -59,7 +59,7 @@ const paginationFn = ({
   if (minPageNumberLimit >= 1) {
     pageDecrementBtn = <li onClick={handlePrevButton}> &hellip; </li>
   }
-  console.log('pages:', pages)
+
   return {
     currentItems,
     renderPageNumbers,
@@ -67,6 +67,7 @@ const paginationFn = ({
     handleNextButton,
     pageIncrementBtn,
     pageDecrementBtn,
+    pages,
   }
 }
 
