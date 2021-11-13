@@ -96,16 +96,16 @@ export default function UserData() {
     // })
   }
 
-  const deleteSelectedHandler = () => {
-    const filteredData1 = users.filter((user) => !idArr.includes(user.id))
-    setUsers(filteredData1)
-  }
-  const deleteAllHandler = () => {
-    const filteredData2 = users.filter(
-      (user) => !allSelectedArr.includes(user.id)
-    )
-    setUsers(filteredData2)
-  }
+  // const deleteSelectedHandler = () => {
+  //   const filteredData1 = users.filter((user) => !idArr.includes(user.id))
+  //   setUsers(filteredData1)
+  // }
+  // const deleteAllHandler = () => {
+  //   const filteredData2 = users.filter(
+  //     (user) => !allSelectedArr.includes(user.id)
+  //   )
+  //   setUsers(filteredData2)
+  // }
   //edit handler
   const editClickHandler = (id) => {
     setUsers(
@@ -162,9 +162,11 @@ export default function UserData() {
         deleteClickHandler={deleteClickHandler}
         idArr={idArr}
         setIdArr={setIdArr}
+        users={users}
+        setUsers={setUsers}
       />
 
-      {allSelectedArr.length > 0 && (
+      {/* {allSelectedArr.length > 0 && (
         <button id='all_delete' onClick={deleteAllHandler}>
           Delete All
         </button>
@@ -173,7 +175,7 @@ export default function UserData() {
         <button id='all_delete' onClick={deleteSelectedHandler}>
           Delete Selected
         </button>
-      )}
+      )} */}
       {filteredUsers.map(
         (user) =>
           user.edit && (
