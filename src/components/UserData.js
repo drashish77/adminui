@@ -156,6 +156,7 @@ export default function UserData() {
       </div>
 
       <Table
+        toggleCheck={toggleCheck}
         currentItems={currentItems}
         editClickHandler={editClickHandler}
         deleteClickHandler={deleteClickHandler}
