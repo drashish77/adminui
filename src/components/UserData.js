@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
-import SearchFilter from './Search/SearchFilter'
 import PaginationCard from './Pagination/PaginationCard'
 import { URL } from '../constants'
 import Loader from '../common/Loader'
@@ -108,6 +107,7 @@ export default function UserData() {
   // }
   //edit handler
   const editClickHandler = (id) => {
+    console.log('edit')
     setUsers(
       users.map((user) =>
         user.id === id

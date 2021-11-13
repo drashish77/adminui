@@ -10,22 +10,36 @@ const Table = ({
   idArr,
   setIdArr,
 }) => {
-  const [checked, setChecked] = useState(false)
+  const [checkedState, setCheckedState] = useState(
+    new Array(currentItems.length).fill(false)
+  )
+
   const deleteSelectedHandler = () => {
     const filteredData1 = users.filter((user) => !idArr.includes(user.id))
     setUsers(filteredData1)
   }
 
   let newArr = idArr
-  const idArrHandler = (id) => {
+  const selectOneUser = (id) => {
     newArr.push(id)
-    setChecked((old) => !old)
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === id ? !item : item
+    )
+    setCheckedState(updatedCheckedState)
     setIdArr([...newArr])
   }
+
   // const userIdArr = []
-  const toggleCheck = () => {
-    currentItems.map((user) => newArr.push(user.id))
-    setChecked((old) => !old)
+  const selectAllCurrentUser = () => {
+    let updatedCheckedState
+    currentItems.map((user) => {
+      updatedCheckedState = checkedState.map((item, index) =>
+        index === user.id ? !item : item
+      )
+      return newArr.push(user.id)
+    })
+    setCheckedState(updatedCheckedState)
+
     setIdArr([...newArr])
   }
   return (
@@ -38,7 +52,7 @@ const Table = ({
                 <input
                   className='toggle_check'
                   type='checkbox'
-                  onClick={toggleCheck}
+                  onClick={selectAllCurrentUser}
                 />
               </div>
             </th>
@@ -49,9 +63,39 @@ const Table = ({
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((user) => {
-            return (
-              <tr key={user.id}>
+          {currentItems.map((user) => (
+            <SearchFilter
+              key={user.id}
+              id={user.id}
+              name={user.name}
+              email={user.email}
+              role={user.role}
+              editClickHandler={editClickHandler}
+              deleteClickHandler={deleteClickHandler}
+              idArr={idArr}
+              setIdArr={setIdArr}
+              checked={checkedState[user.id]}
+              idArrHandler={selectOneUser}
+            />
+          ))}
+        </tbody>
+      </table>
+
+      {idArr.length > 0 && (
+        <button id='all_delete' onClick={deleteSelectedHandler}>
+          {idArr.length === currentItems.length
+            ? 'Delete All'
+            : 'Delete Selected'}
+        </button>
+      )}
+    </div>
+  )
+}
+
+export default Table
+
+/*
+                <tr key={user.id}>
                 <td>
                   <input
                     type='checkbox'
@@ -76,20 +120,4 @@ const Table = ({
                   ></i>
                 </td>
               </tr>
-            )
-          })}
-        </tbody>
-      </table>
-
-      {idArr.length > 0 && (
-        <button id='all_delete' onClick={deleteSelectedHandler}>
-          {idArr.length === currentItems.length
-            ? 'Delete All'
-            : 'Delete Selected'}
-        </button>
-      )}
-    </div>
-  )
-}
-
-export default Table
+                */
