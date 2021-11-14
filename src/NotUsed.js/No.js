@@ -60,6 +60,7 @@ const Table = ({
 
   //   setIdArr([...newArr])
   // }
+
   return (
     <div>
       <table>
@@ -139,4 +140,24 @@ export default Table
                   ></i>
                 </td>
               </tr>
+  // const pages = []
+  // for (let i = 1; i <= Math.ceil(filteredUsers.length / itemsPerPage); i++) {
+  //   pages.push(i)
+  // }
+                const renderPageNumbers2 = pages.map((number) => {
+    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={handleClick}
+          className={currentPage === number ? 'active' : ''}
+        >
+          {number}
+        </li>
+      )
+    } else {
+      return null
+    }
+  })
                 */

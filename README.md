@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# AdminUI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An admin page where u can update and delete user data
 
-## Available Scripts
+## Authors
 
-In the project directory, you can run:
+- [@AshishGupta](https://www.github.com/drashish77)
 
-### `yarn start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Edit functionality
+- Single user delete functionality
+- Single/multi select and delete functionality
+- All select and delete functionality
+- mobile responsive
+- no use any outside npm package (except axios)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Hi, I'm Ashish Gutpa! 👋
 
-### `yarn test`
+## 🚀 About Me
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I'm a front end developer, I am coding from last 3 years,
+coding in react js from last one year.
 
-### `yarn build`
+I have created many projects using HTML, Css and JavaScript, react js.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I have done Api Integration in my projects.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### State management
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I mostly managed state, according to the project
+by state, context API, for big projects I used Redux,
+if Asynchronous call used Redux Saga.
 
-### `yarn eject`
+### Styling
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Other than normal css, I used CSS libraries
+eg. Tailwind, bootstrap
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Also used CSS preprocessor like SASS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🔗 Links
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[![portfolio](https://img.shields.io/badge/my_portfolio-orange?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ashishx.com/)
+[![github](https://img.shields.io/badge/github-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/drashish77/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/dr_coderr)
 
-## Learn More
+## Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Install my-project with npm
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  cd adminui
+  npm install
+```
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run deploy
+```
+
+## 🛠 Skills
+
+Javascript, HTML, CSS, React js, Tailwind CSS, Bootstrap,
+Redux, Redux-saga.
+
+## FAQ
+
+#### How many functionality have you implemented?
+
+- Edit user name, email, role.
+- Delete individual user- by clicking on delete button of individual user
+- Delete Selected - by selecting either by checkbox button of individual user of many user.
+- Delete All - by selecting all users of a page and delete all
+
+#### Did you follow modularity of code?
+
+Answer: Yes
 
 ### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I followed separation of concerns design principle.
 
-### Analyzing the Bundle Size
+I broke down A big component according the single functionality
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Search
+- Table
+- EditForm
+- Pagination
+- util
+- constants
+- common (Loader)
 
-### Making a Progressive Web App
+#### Did you follow modularity of code?
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-Testing the code.
+-Improving functionality

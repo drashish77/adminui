@@ -10,7 +10,6 @@ import Table from './Table/Table'
 
 export default function UserData() {
   const [idArr, setIdArr] = useState([])
-  const [allSelectedArr, setAllSelectedArr] = useState([])
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
@@ -25,7 +24,7 @@ export default function UserData() {
     email: '',
     role: '',
   })
-  // console.log(idArr)
+
   //user property update
   const handleChange = (e) =>
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value })
@@ -45,6 +44,7 @@ export default function UserData() {
         console.log(err)
       })
   }, [])
+
   //search filter
   useEffect(() => {
     setFilteredUsers(
@@ -87,27 +87,10 @@ export default function UserData() {
   const userIdArr = []
   const toggleCheck = () => {
     currentItems.map((user) => userIdArr.push(user.id))
-    setAllSelectedArr(userIdArr)
-    // setAllSelectedArr((prevState) => {
-    //   const newState = { ...prevState }
-    //   newState[allSelectedArr] = !prevState[allSelectedArr]
-    //   return newState
-    // })
   }
 
-  // const deleteSelectedHandler = () => {
-  //   const filteredData1 = users.filter((user) => !idArr.includes(user.id))
-  //   setUsers(filteredData1)
-  // }
-  // const deleteAllHandler = () => {
-  //   const filteredData2 = users.filter(
-  //     (user) => !allSelectedArr.includes(user.id)
-  //   )
-  //   setUsers(filteredData2)
-  // }
   //edit handler
   const editClickHandler = (id) => {
-    console.log('edit')
     setUsers(
       users.map((user) =>
         user.id === id
@@ -116,7 +99,6 @@ export default function UserData() {
       )
     )
     setUserEdit(users.find((user) => user.id === id))
-    // setUpdate((prevState) => !prevState)
   }
 
   const onSubmit = (e, id) => {

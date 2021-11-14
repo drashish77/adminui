@@ -7,16 +7,9 @@ const SearchFilter = (props) => {
     isChecked,
     editClickHandler,
     deleteClickHandler,
-    idArr,
-    setIdArr,
     idArrHandler,
   } = props
-  // getting Id array of the selected items
-  // let newArr = idArr
-  // const idArrHandler = (id) => {
-  //   newArr.push(id)
-  //   setIdArr([...newArr])
-  // }
+
   return (
     <tr key={id}>
       <td>

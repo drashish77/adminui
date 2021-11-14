@@ -17,25 +17,26 @@ const Table = ({
     setUsers(filteredData1)
   }
 
-  let newArr = idArr
-
+  // let newArr = idArr
+  // For selecting a single user
   const selectOneUser = (e) => {
     const { id, checked } = e.target
     setIsCheck([...isCheck, id])
     if (!checked) {
       setIsCheck(isCheck.filter((item) => item !== id))
     }
-    newArr.push(id)
-    setIdArr([...newArr])
+    idArr.push(id)
+    setIdArr([...idArr])
   }
+  //For All user for a page select handler
   const selectAllCurrentUser = (e) => {
     setIsCheckAll(!isCheckAll)
     setIsCheck(currentItems.map((li) => li.id))
     if (isCheckAll) {
       setIsCheck([])
     }
-    currentItems.map((user) => newArr.push(user.id))
-    setIdArr([...newArr])
+    currentItems.map((user) => idArr.push(user.id))
+    setIdArr([...idArr])
   }
 
   return (
@@ -69,7 +70,6 @@ const Table = ({
               deleteClickHandler={deleteClickHandler}
               idArr={idArr}
               setIdArr={setIdArr}
-              // checked={checkedState[user.id]}
               isChecked={isCheck.includes(user.id)}
               idArrHandler={(e) => selectOneUser(e)}
             />

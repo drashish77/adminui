@@ -22,6 +22,7 @@ table {
 
 td,
 th {
+  color: #474747;
   text-align: left;
   border-bottom: 1px solid #dddddd;
   padding: 13px;
@@ -104,6 +105,7 @@ i {
 }
 .edit_form {
   background-color: rgba(169, 169, 169, 0.8);
+  color: #474747;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,9 +154,7 @@ button {
   top: 10%;
   right: 5%;
   color: white;
-  /* border-radius: 50%; */
   background-color: red;
-
   text-align: center;
 }
 .mobile {

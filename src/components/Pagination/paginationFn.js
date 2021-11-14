@@ -11,32 +11,33 @@ const paginationFn = ({
   minPageNumberLimit,
   setMinPageNumberLimit,
 }) => {
-  const pages = []
-  for (let i = 1; i <= Math.ceil(filteredUsers.length / itemsPerPage); i++) {
-    pages.push(i)
-  }
+  const pages = [
+    ...Array(Math.ceil(filteredUsers.length / itemsPerPage)).keys(),
+  ].map((key) => ++key)
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
-  const renderPageNumbers = pages.map((number) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <li
-          key={number}
-          id={number}
-          onClick={handleClick}
-          className={currentPage === number ? 'active' : ''}
-        >
-          {number}
-        </li>
-      )
-    } else {
-      return null
-    }
-  })
+  // const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = filteredUsers.filter(
+    (user, idx) => idx + 1 > indexOfFirstItem && idx < indexOfLastItem
+  )
+
+  const renderPageNumbers = pages
+    .filter(
+      (number) => number < maxPageNumberLimit + 1 && number > minPageNumberLimit
+    )
+    .map((number) => (
+      <li
+        key={number}
+        id={number}
+        onClick={handleClick}
+        className={currentPage === number ? 'active' : ''}
+      >
+        {number}
+      </li>
+    ))
   const handlePrevButton = () => {
     setCurrentPage(currentPage - 1)
     if ((currentPage - 1) % pageNumberLimit === 0) {
