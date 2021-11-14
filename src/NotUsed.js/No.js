@@ -10,6 +10,9 @@ const Table = ({
   idArr,
   setIdArr,
 }) => {
+  // const [checkedState, setCheckedState] = useState(
+  //   new Array(currentItems.length).fill(false)
+  // )
   const [isCheckAll, setIsCheckAll] = useState(false)
   const [isCheck, setIsCheck] = useState([])
   const deleteSelectedHandler = () => {
@@ -18,7 +21,14 @@ const Table = ({
   }
 
   let newArr = idArr
-
+  // const selectOneUser = (id) => {
+  //   newArr.push(id)
+  //   const updatedCheckedState = checkedState.map((item, index) =>
+  //     index === id ? !item : item
+  //   )
+  //   setCheckedState(updatedCheckedState)
+  //   setIdArr([...newArr])
+  // }
   const selectOneUser = (e) => {
     const { id, checked } = e.target
     setIsCheck([...isCheck, id])
@@ -37,7 +47,19 @@ const Table = ({
     currentItems.map((user) => newArr.push(user.id))
     setIdArr([...newArr])
   }
+  // const userIdArr = []
+  // const selectAllCurrentUser = () => {
+  //   let updatedCheckedState
+  //   currentItems.map((user) => {
+  //     updatedCheckedState = checkedState.map((item, index) =>
+  //       index === user.id ? !item : item
+  //     )
+  //     return newArr.push(user.id)
+  //   })
+  //   setCheckedState(updatedCheckedState)
 
+  //   setIdArr([...newArr])
+  // }
   return (
     <div>
       <table>
@@ -90,3 +112,31 @@ const Table = ({
 }
 
 export default Table
+
+/*
+                <tr key={user.id}>
+                <td>
+                  <input
+                    type='checkbox'
+                    className='input'
+                    name={user.name}
+                    id={user.id}
+                    onChange={() => idArrHandler(user.id)}
+                    checked={checked}
+                  />
+                </td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>
+                  <i
+                    className='far fa-edit firstIcon'
+                    onClick={editClickHandler}
+                  ></i>
+                  <i
+                    className='far fa-trash-alt secondIcon'
+                    onClick={deleteClickHandler}
+                  ></i>
+                </td>
+              </tr>
+                */

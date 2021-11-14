@@ -4,7 +4,7 @@ const SearchFilter = (props) => {
     name,
     email,
     role,
-    checked,
+    isChecked,
     editClickHandler,
     deleteClickHandler,
     idArr,
@@ -25,8 +25,8 @@ const SearchFilter = (props) => {
           className='input'
           name={name}
           id={id}
-          onChange={() => idArrHandler(id)}
-          checked={checked}
+          onChange={idArrHandler}
+          checked={isChecked}
         />
       </td>
       <td>{name}</td>
