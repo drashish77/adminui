@@ -147,7 +147,16 @@ button {
 .toggle_check {
   text-align: center;
 }
+.form__close {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  color: white;
+  border-radius: 50%;
+  background-color: red;
 
+  text-align: center;
+}
 @media screen and (max-width: 425px) {
   .edit_form {
     width: 70%;

@@ -166,16 +166,6 @@ export default function UserData() {
         setUsers={setUsers}
       />
 
-      {/* {allSelectedArr.length > 0 && (
-        <button id='all_delete' onClick={deleteAllHandler}>
-          Delete All
-        </button>
-      )}
-      {idArr.length > 0 && (
-        <button id='all_delete' onClick={deleteSelectedHandler}>
-          Delete Selected
-        </button>
-      )} */}
       {filteredUsers.map(
         (user) =>
           user.edit && (

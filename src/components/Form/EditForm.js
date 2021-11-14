@@ -1,4 +1,4 @@
-const EditForm = ({ id, name, email, role, onSubmit, handleChange }) => {
+const EditForm = ({ id, name, email, role, onSubmit, handleChange, ref }) => {
   return (
     <form className='edit_form' key={id} onSubmit={(e) => onSubmit(e, id)}>
       <div className='edit_form_name_email'>
@@ -7,6 +7,7 @@ const EditForm = ({ id, name, email, role, onSubmit, handleChange }) => {
           name='name'
           placeholder='enter Name'
           value={name}
+          ref={ref}
           onChange={handleChange}
           required
         />
@@ -29,6 +30,9 @@ const EditForm = ({ id, name, email, role, onSubmit, handleChange }) => {
         />
 
         <button type='submit'>Update</button>
+        <button className='form__close'>
+          <i className='far fa-times-circle'></i>
+        </button>
       </div>
     </form>
   )
