@@ -26,9 +26,9 @@ th {
   border-bottom: 1px solid #dddddd;
   padding: 13px;
 }
-.toggleCheck input,
+/* .toggleCheck input, */
 .input {
-  margin-left: 20px;
+  margin-left: 30px;
   cursor: pointer;
 }
 i {
@@ -96,7 +96,7 @@ i {
 }
 .searchIcon i {
   position: absolute;
-  top: 4%;
+  top: 3.6%;
   right: 13%;
 }
 #clearBtn {
@@ -152,16 +152,43 @@ button {
   top: 10%;
   right: 5%;
   color: white;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   background-color: red;
 
   text-align: center;
 }
+.mobile {
+  display: none;
+}
+
 @media screen and (max-width: 425px) {
+  .mobile {
+    display: block;
+  }
+  .mobile * {
+    margin: 5px;
+  }
+  .desktop {
+    display: none;
+  }
+  .input {
+    margin-left: 10px;
+  }
+  .searchIcon i {
+    position: absolute;
+    top: 4.5%;
+    right: 13%;
+  }
+  .form__close {
+    top: 5%;
+  }
   .edit_form {
-    width: 70%;
-    height: 30%;
+    width: 80%;
+    height: 38%;
     margin-top: 50px;
+  }
+  .edit_form button[type='submit'] {
+    margin-top: 10px;
   }
   td,
   th {

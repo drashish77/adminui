@@ -44,17 +44,16 @@ const Table = ({
         <thead>
           <tr>
             <th>
-              <div className='toggle_check'>
-                <input
-                  className='toggle_check'
-                  type='checkbox'
-                  onClick={selectAllCurrentUser}
-                />
-              </div>
+              <input
+                className='input'
+                type='checkbox'
+                onClick={selectAllCurrentUser}
+              />
             </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th className='mobile'>Name/Email/Role</th>
+            <th className='desktop'>Name</th>
+            <th className='desktop'>Email</th>
+            <th className='desktop'>Role</th>
             <th>Actions</th>
           </tr>
         </thead>

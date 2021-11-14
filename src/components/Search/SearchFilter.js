@@ -29,9 +29,14 @@ const SearchFilter = (props) => {
           checked={isChecked}
         />
       </td>
-      <td>{name}</td>
-      <td>{email}</td>
-      <td>{role}</td>
+      <td className='mobile'>
+        <div className=''>{name}</div>
+        <div className=''>{email}</div>
+        <div className=''>{role}</div>
+      </td>
+      <td className='desktop'>{name}</td>
+      <td className='desktop'>{email}</td>
+      <td className='desktop'>{role}</td>
       <td>
         <i
           className='far fa-edit firstIcon'
