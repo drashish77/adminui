@@ -7,13 +7,17 @@ const Table = ({
   currentItems,
   editClickHandler,
   deleteClickHandler,
-  idArr,
-  setIdArr,
+  // idArr,
+  // setIdArr,
+  isCheckAll,
+  setIsCheckAll,
+  isCheck,
+  setIsCheck,
 }) => {
-  const [isCheckAll, setIsCheckAll] = useState(false)
-  const [isCheck, setIsCheck] = useState([])
+  // const [isCheckAll, setIsCheckAll] = useState(false)
+  // const [isCheck, setIsCheck] = useState([])
   const deleteSelectedHandler = () => {
-    const filteredData1 = users.filter((user) => !idArr.includes(user.id))
+    const filteredData1 = users.filter((user) => !isCheck.includes(user.id))
     setUsers(filteredData1)
   }
 
@@ -25,9 +29,11 @@ const Table = ({
     if (!checked) {
       setIsCheck(isCheck.filter((item) => item !== id))
     }
-    idArr.push(id)
-    setIdArr([...idArr])
+    isCheck.push(id)
+    setIsCheck([...isCheck])
   }
+  console.log({ isCheck })
+  console.log({ isCheck })
   //For All user for a page select handler
   const selectAllCurrentUser = (e) => {
     setIsCheckAll(!isCheckAll)
@@ -35,8 +41,8 @@ const Table = ({
     if (isCheckAll) {
       setIsCheck([])
     }
-    currentItems.map((user) => idArr.push(user.id))
-    setIdArr([...idArr])
+    currentItems.map((user) => isCheck.push(user.id))
+    setIsCheck([...isCheck])
   }
 
   return (
@@ -68,8 +74,8 @@ const Table = ({
               role={user.role}
               editClickHandler={editClickHandler}
               deleteClickHandler={deleteClickHandler}
-              idArr={idArr}
-              setIdArr={setIdArr}
+              idArr={isCheck}
+              setIdArr={setIsCheck}
               isChecked={isCheck.includes(user.id)}
               idArrHandler={(e) => selectOneUser(e)}
             />
@@ -77,9 +83,9 @@ const Table = ({
         </tbody>
       </table>
 
-      {idArr.length > 0 && (
+      {isCheck.length > 0 && (
         <button id='all_delete' onClick={deleteSelectedHandler}>
-          {idArr.length === currentItems.length
+          {isCheck.length === currentItems.length
             ? 'Delete All'
             : 'Delete Selected'}
         </button>
