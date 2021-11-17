@@ -11,6 +11,7 @@ const Table = ({
   const deleteSelectedHandler = () => {
     const filteredData1 = users.filter((user) => !idArr.includes(user.id))
     setUsers(filteredData1)
+    setIdArr([])
   }
 
   // For selecting a single user

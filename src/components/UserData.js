@@ -19,6 +19,7 @@ export default function UserData() {
   const [pageNumberLimit] = useState(4)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(4)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
+  const [isDisplayForm, setIsDisplayForm] = useState(false)
   const [userEdit, setUserEdit] = useState({
     name: '',
     email: '',
@@ -98,9 +99,12 @@ export default function UserData() {
           : user
       )
     )
+    setIsDisplayForm(true)
     setUserEdit(users.find((user) => user.id === id))
   }
-
+  const closeFormHandler = () => {
+    setIsDisplayForm(false)
+  }
   const onSubmit = (e, id) => {
     e.preventDefault()
     const data = users.map((user) =>
@@ -108,7 +112,14 @@ export default function UserData() {
     )
     setUsers(data)
   }
-
+  // const resetForm = () => {
+  //   setUserEdit({
+  //     ...userEdit,
+  //     name: '',
+  //     email: '',
+  //     role: '',
+  //   })
+  // }
   if (loading) {
     return <Loader />
   }
@@ -150,7 +161,8 @@ export default function UserData() {
 
       {filteredUsers.map(
         (user) =>
-          user.edit && (
+          user.edit &&
+          isDisplayForm && (
             <EditForm
               key={user.id}
               id={user.id}
@@ -158,6 +170,7 @@ export default function UserData() {
               email={userEdit.email}
               role={userEdit.role}
               onSubmit={onSubmit}
+              closeFormHandler={closeFormHandler}
               handleChange={handleChange}
             />
           )
