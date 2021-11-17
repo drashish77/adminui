@@ -9,9 +9,7 @@ import paginationFn from './Pagination/paginationFn'
 import Table from './Table/Table'
 
 export default function UserData() {
-  // const [idArr, setIdArr] = useState([])
-  const [isCheckAll, setIsCheckAll] = useState(false)
-  const [isCheck, setIsCheck] = useState([])
+  const [idArr, setIdArr] = useState([])
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
@@ -144,12 +142,8 @@ export default function UserData() {
         currentItems={currentItems}
         editClickHandler={editClickHandler}
         deleteClickHandler={deleteClickHandler}
-        // idArr={idArr}
-        // setIdArr={setIdArr}
-        isCheckAll={isCheckAll}
-        setIsCheckAll={setIsCheckAll}
-        isCheck={isCheck}
-        setIsCheck={setIsCheck}
+        idArr={idArr}
+        setIdArr={setIdArr}
         users={users}
         setUsers={setUsers}
       />

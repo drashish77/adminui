@@ -1,50 +1,43 @@
-import { useState } from 'react'
 import SearchFilter from '../Search/SearchFilter'
-
 const Table = ({
   users,
   setUsers,
   currentItems,
   editClickHandler,
   deleteClickHandler,
-  // idArr,
-  // setIdArr,
-  isCheckAll,
-  setIsCheckAll,
-  isCheck,
-  setIsCheck,
+  idArr,
+  setIdArr,
 }) => {
-  // const [isCheckAll, setIsCheckAll] = useState(false)
-  // const [isCheck, setIsCheck] = useState([])
   const deleteSelectedHandler = () => {
-    const filteredData1 = users.filter((user) => !isCheck.includes(user.id))
+    const filteredData1 = users.filter((user) => !idArr.includes(user.id))
     setUsers(filteredData1)
   }
 
-  // let newArr = idArr
   // For selecting a single user
   const selectOneUser = (e) => {
     const { id, checked } = e.target
-    setIsCheck([...isCheck, id])
     if (!checked) {
-      setIsCheck(isCheck.filter((item) => item !== id))
+      setIdArr(idArr.filter((item) => item !== id))
+    } else {
+      setIdArr([...new Set([...idArr, id])].sort())
     }
-    isCheck.push(id)
-    setIsCheck([...isCheck])
-  }
-  console.log({ isCheck })
-  console.log({ isCheck })
-  //For All user for a page select handler
-  const selectAllCurrentUser = (e) => {
-    setIsCheckAll(!isCheckAll)
-    setIsCheck(currentItems.map((li) => li.id))
-    if (isCheckAll) {
-      setIsCheck([])
-    }
-    currentItems.map((user) => isCheck.push(user.id))
-    setIsCheck([...isCheck])
   }
 
+  const toggleCheckAll = () => {
+    // Check if all current users are checked
+    const isAllChecked = currentItems.every((item) => idArr.includes(item.id))
+    // Add or remove users from idArr state
+    if (isAllChecked) {
+      setIdArr(
+        idArr.filter((id) => !currentItems.map((item) => item.id).includes(id))
+      )
+    } else {
+      const idArrUpdate = [
+        ...new Set([...idArr, ...currentItems.map((item) => item.id)]),
+      ]
+      setIdArr(idArrUpdate)
+    }
+  }
   return (
     <div>
       <table>
@@ -54,7 +47,8 @@ const Table = ({
               <input
                 className='input'
                 type='checkbox'
-                onClick={selectAllCurrentUser}
+                onChange={toggleCheckAll}
+                checked={currentItems.every(({ id }) => idArr.includes(id))}
               />
             </th>
             <th className='mobile'>Name/Email/Role</th>
@@ -74,18 +68,17 @@ const Table = ({
               role={user.role}
               editClickHandler={editClickHandler}
               deleteClickHandler={deleteClickHandler}
-              idArr={isCheck}
-              setIdArr={setIsCheck}
-              isChecked={isCheck.includes(user.id)}
+              idArr={idArr}
+              setIdArr={setIdArr}
+              isChecked={idArr.includes(user.id)}
               idArrHandler={(e) => selectOneUser(e)}
             />
           ))}
         </tbody>
       </table>
-
-      {isCheck.length > 0 && (
+      {idArr.length > 0 && (
         <button id='all_delete' onClick={deleteSelectedHandler}>
-          {isCheck.length === currentItems.length
+          {currentItems.every(({ id }) => idArr.includes(id))
             ? 'Delete All'
             : 'Delete Selected'}
         </button>
@@ -93,5 +86,4 @@ const Table = ({
     </div>
   )
 }
-
 export default Table
