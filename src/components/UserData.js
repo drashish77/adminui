@@ -57,8 +57,22 @@ export default function UserData() {
             user.role.toLowerCase().includes(search.toLowerCase())
         )
     )
+    setCurrentPage(1)
   }, [search, users])
+  /*
 
+  const globalSearch = (e) => {
+    let searchFilteredData = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLowerCase()) ||
+        user.role.toLowerCase().includes(search.toLowerCase())
+    )
+    setSearch(e.target.value)
+    setFilteredUsers(searchFilteredData)
+  }
+  //add global search in the input onChange Handler
+*/
   const {
     currentItems,
     renderPageNumbers,

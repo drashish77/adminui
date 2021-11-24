@@ -14,12 +14,13 @@ const paginationFn = ({
   const pages = [
     ...Array(Math.ceil(filteredUsers.length / itemsPerPage)).keys(),
   ].map((key) => ++key)
+
   const handleClick = (event) => {
     setCurrentPage(+event.target.id)
   }
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  // const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
+  // const currentItems = filteredUsers.(indexOfFirstItem, indexOfLastItem)
   const currentItems = filteredUsers.filter(
     (user, idx) => idx + 1 > indexOfFirstItem && idx < indexOfLastItem
   )
